@@ -7,7 +7,7 @@ function App() {
       <header className="App-header">
         <img src={logosquare} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Upload <code>your file</code> to encrypt.
         </p>
         <a
           className="App-link"
