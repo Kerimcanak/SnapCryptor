@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+import logosquare from './guielements/logosquare.png'; /* eslint-disable-line */ /* @import-ignore logo only used in index.html */
 import './App.css';
 
 function App() {
