@@ -1,0 +1,58 @@
+HOW TO RUN YOUR ENCRYPTOR APP (DEVELOPMENT MODE)
+
+This document explains how to start your React frontend and Python backend
+so they can communicate during development.
+
+==============================================================
+
+STEP 1: START THE PYTHON BACKEND SERVER
+
+1.  Open a NEW terminal or command prompt window.
+
+2.  Navigate to your backend project folder:
+    cd SnapCryptor/backend/
+
+3.  Activate your Python virtual environment:
+    * On Windows (Command Prompt):
+        .\venv\Scripts\activate
+    * On Windows (PowerShell):
+        .\venv\Scripts\Activate.ps1
+    * On macOS/Linux:
+        source venv/bin/activate
+    (You should see "(venv)" at the start of your terminal prompt once activated.)
+
+4.  Start the Flask server:
+    python app.py
+
+    You should see output similar to:
+    " * Running on http://127.0.0.1:5000"
+    Leave this terminal window open and running.
+
+==============================================================
+
+STEP 2: START THE REACT FRONTEND APP
+
+1.  Open ANOTHER NEW terminal or command prompt window.
+    (You should now have two terminals open).
+
+2.  Navigate to your frontend project folder:
+    cd SnapCryptor/snapcryptorGUI/
+
+3.  Start the React development server:
+    npm start
+
+    This will usually open your web browser automatically to:
+    http://localhost:3000
+    Leave this terminal window open and running.
+
+==============================================================
+
+YOU ARE NOW READY TO USE THE APP
+
+* Your React frontend (GUI) is running in your browser at http://localhost:3000.
+* Your Python backend (encryption logic) is running locally in the background on http://127.0.0.1:5000.
+* The frontend will send requests to this local backend.
+
+To stop both:
+* Go to each terminal window and press `CTRL + C` (or `Cmd + C` on Mac) to stop the running processes.
+* To deactivate the Python virtual environment in its terminal, simply type `deactivate` and press Enter.
