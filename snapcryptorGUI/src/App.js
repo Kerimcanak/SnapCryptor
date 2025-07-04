@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import FileUploader from './components/fileUploader';
-import logosquare from './graphics/logosquare.png'; // Assuming this path is correct for your logo
+import logosquare from './graphics/logowide.png'; // Assuming this path is correct for your logo
 
 function App() {
   const [selectedFiles, setSelectedFiles] = useState([]);
@@ -225,3 +225,5 @@ function App() {
 }
 
 export default App;
+
+//### END OF FILE ###
