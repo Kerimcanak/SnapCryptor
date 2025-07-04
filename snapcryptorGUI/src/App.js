@@ -1,11 +1,6 @@
-// src/App.js
 import React, { useState, useCallback } from 'react';
 import FileUploader from './components/fileUploader';
 import logosquare from './graphics/logosquare.png'; // Assuming this path is correct for your logo
-
-// No need for eslint-disable-line comments or @import-ignore for imports if they are used.
-// If logosquare is ONLY used in index.html, you can remove its import from App.js.
-// Given you have an <img> tag for it here, it should be imported.
 
 function App() {
   const [selectedFiles, setSelectedFiles] = useState([]);
@@ -25,7 +20,7 @@ function App() {
     setSelectedFiles(prevFiles => prevFiles.filter(file => file.name !== fileName));
   }, []);
 
-  // --- NEW: handleOperation (Encrypt/Decrypt) function ---
+  // --- ADD THIS ENTIRE 'handleOperation' FUNCTION HERE ---
   const handleOperation = async (operationType) => {
     if (selectedFiles.length === 0) {
       setMessage('Please select files first.');
@@ -48,7 +43,6 @@ function App() {
     });
 
     // --- Backend URL ---
-    // Make sure your Python backend is running on this port (e.g., Flask's default 5000)
     const backendUrl = `http://127.0.0.1:5000/${operationType}`;
 
     try {
@@ -68,7 +62,6 @@ function App() {
 
       // If the backend sends back a URL to the processed file, you can initiate download
       if (result.files && result.files.length > 0) {
-          // Assuming the backend sends an array of files, and each has a download_url
           result.files.forEach(fileInfo => {
               if (fileInfo.download_url) {
                   const link = document.createElement('a');
@@ -81,7 +74,6 @@ function App() {
           });
       }
 
-
       // Optionally clear selected files after successful operation
       setSelectedFiles([]);
       setPassword('');
@@ -93,7 +85,8 @@ function App() {
       setIsLoading(false);
     }
   };
-  // --- END: handleOperation function ---
+  // --- END of handleOperation function ---
+
 
   return (
     <div className="App" style={{ backgroundColor: 'black' , minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
@@ -153,7 +146,7 @@ function App() {
       {/* Encryption Options */}
       <div style={{ maxWidth: '600px', width: '100%', margin: '20px auto', padding: '20px', border: '1px solid #eee', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)', backgroundColor: '#333' }}>
         <h2 style={{color: 'white'}}>Encryption Options</h2>
-        <label htmlFor="password" style={{ display: 'block', marginBottom: '8px', fontWeight: 'bold', color: 'orange' }}> {/* Changed color for visibility */}
+        <label htmlFor="password" style={{ display: 'block', marginBottom: '8px', fontWeight: 'bold', color: 'orange' }}>
           Password:
         </label>
         <input
@@ -166,19 +159,19 @@ function App() {
             borderRadius: '4px',
             border: '1px solid #ddd',
             fontSize: '1em',
-            backgroundColor: '#444', // Darker input background
-            color: 'white', // White text in input
+            backgroundColor: '#444',
+            color: 'white',
           }}
           placeholder="Enter your secret password"
-          value={password} // --- CONNECTED TO STATE ---
-          onChange={(e) => setPassword(e.target.value)} // --- UPDATES STATE ---
-          disabled={isLoading} // --- DISABLED WHEN LOADING ---
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          disabled={isLoading}
         />
 
         <div style={{ display: 'flex', justifyContent: 'center', gap: '15px' }}>
           <button
-            onClick={() => handleOperation('encrypt')} // --- CONNECTED TO HANDLER ---
-            disabled={selectedFiles.length === 0 || !password || isLoading} // --- DISABLED LOGIC ---
+            onClick={() => handleOperation('encrypt')}
+            disabled={selectedFiles.length === 0 || !password || isLoading}
             style={{
               padding: '12px 25px',
               backgroundColor: '#007bff',
@@ -187,15 +180,15 @@ function App() {
               borderRadius: '5px',
               cursor: 'pointer',
               fontSize: '1.1em',
-              opacity: (selectedFiles.length === 0 || !password || isLoading) ? 0.6 : 1, // Visual feedback for disabled
+              opacity: (selectedFiles.length === 0 || !password || isLoading) ? 0.6 : 1,
               transition: 'opacity 0.3s ease',
             }}
           >
-            {isLoading && message.includes('Encrypting') ? 'Encrypting...' : 'Encrypt Files'} {/* Conditional text */}
+            {isLoading && message.includes('Encrypting') ? 'Encrypting...' : 'Encrypt Files'}
           </button>
           <button
-            onClick={() => handleOperation('decrypt')} // --- CONNECTED TO HANDLER ---
-            disabled={selectedFiles.length === 0 || !password || isLoading} // --- DISABLED LOGIC ---
+            onClick={() => handleOperation('decrypt')}
+            disabled={selectedFiles.length === 0 || !password || isLoading}
             style={{
               padding: '12px 25px',
               backgroundColor: '#6c757d',
@@ -204,11 +197,11 @@ function App() {
               borderRadius: '5px',
               cursor: 'pointer',
               fontSize: '1.1em',
-              opacity: (selectedFiles.length === 0 || !password || isLoading) ? 0.6 : 1, // Visual feedback for disabled
+              opacity: (selectedFiles.length === 0 || !password || isLoading) ? 0.6 : 1,
               transition: 'opacity 0.3s ease',
             }}
           >
-            {isLoading && message.includes('Decrypting') ? 'Decrypting...' : 'Decrypt Files'} {/* Conditional text */}
+            {isLoading && message.includes('Decrypting') ? 'Decrypting...' : 'Decrypt Files'}
           </button>
         </div>
 
